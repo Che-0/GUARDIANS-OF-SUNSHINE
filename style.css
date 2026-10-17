@@ -1,0 +1,257 @@
+:root {
+  --bmo-teal: #57a49a;
+  --bmo-teal-dark: #3b766f;
+  --bmo-screen-bg: #050a05;
+  --neon-green: #39ff14;
+  --olive-green: #b5b842;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at center, #142422 0%, #070b0c 100%);
+  min-height: 100vh;
+  user-select: none;
+}
+
+.retro-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+}
+
+.retro-subtitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.85rem;
+}
+
+.font-vt323 {
+  font-family: 'VT323', monospace;
+  letter-spacing: 0.5px;
+}
+
+.text-neon {
+  color: var(--neon-green) !important;
+}
+
+.border-neon {
+  border-color: var(--neon-green) !important;
+}
+
+.bg-bmo-dark {
+  background-color: #0e1c1a;
+}
+
+/* CARCASA DE BMO */
+.bmo-body {
+  background: linear-gradient(145deg, var(--bmo-teal) 0%, #468a80 100%);
+  border: 6px solid var(--bmo-teal-dark);
+  border-radius: 28px;
+  padding: 20px 24px 28px 24px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    inset 0 4px 8px rgba(255, 255, 255, 0.35);
+}
+
+.bmo-brand {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65rem;
+  color: #193833;
+  letter-spacing: 2px;
+}
+
+.bmo-speaker span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #193833;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.bmo-led {
+  width: 12px;
+  height: 12px;
+  background-color: #39ff14;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #39ff14;
+}
+
+/* PANTALLA CRT */
+.bmo-screen-bezel {
+  background-color: #21403c;
+  padding: 12px;
+  border-radius: 18px;
+  box-shadow: inset 0 5px 12px rgba(0, 0, 0, 0.85);
+}
+
+.crt-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #39ff14;
+  box-shadow: 0 0 18px rgba(57, 255, 20, 0.35);
+}
+
+#gameCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.crt-scanlines {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.32) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+/* DETALLES DEL CUERPO DE BMO */
+.bmo-floppy-slot {
+  width: 55%;
+  height: 10px;
+  background-color: #17302c;
+  border-radius: 4px;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,0.8);
+}
+
+.bmo-small-blue-btn {
+  width: 32px;
+  height: 32px;
+  background-color: #1e4bd1;
+  border: 2px solid #0f297a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: 0 3px 0 #0a1c54;
+}
+
+.bmo-small-blue-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #0a1c54;
+}
+
+/* CONTROLES FÍSICOS DE BMO */
+.bmo-controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* D-PAD AMARILLA */
+.dpad-container {
+  position: relative;
+  width: 108px;
+  height: 108px;
+}
+
+.dpad-btn, .dpad-center {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background-color: #f4d03f;
+  border: 2px solid #b7950b;
+  color: #5c4b04;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.dpad-btn:active {
+  background-color: #d4ac0d;
+}
+
+.dpad-up { top: 0; left: 36px; border-radius: 6px 6px 0 0; }
+.dpad-down { bottom: 0; left: 36px; border-radius: 0 0 6px 6px; }
+.dpad-left { top: 36px; left: 0; border-radius: 6px 0 0 6px; }
+.dpad-right { top: 36px; right: 0; border-radius: 0 6px 6px 0; }
+.dpad-center { top: 36px; left: 36px; border: none; z-index: 2; }
+
+/* BOTONES CENTRALES */
+.bmo-pill-btn {
+  background-color: #1f3b73;
+  color: #fff;
+  border: 2px solid #102142;
+  border-radius: 12px;
+  padding: 4px 12px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  box-shadow: 0 3px 0 #0b172e;
+}
+
+.bmo-pill-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #0b172e;
+}
+
+/* BOTONES DE ACCIÓN DERECHA */
+.action-buttons {
+  position: relative;
+  width: 130px;
+  height: 105px;
+}
+
+.bmo-action-btn {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.45);
+  transition: transform 0.05s;
+}
+
+.bmo-action-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+}
+
+.btn-red-circle {
+  background-color: #e6194b;
+  border: 3px solid #910d2c;
+  bottom: 0;
+  left: 10px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.85rem;
+}
+
+.btn-blue-cross {
+  background-color: #00b4d8;
+  border: 3px solid #0077b6;
+  top: 22px;
+  right: 5px;
+}
+
+.btn-green-triangle {
+  background-color: #52b788;
+  border: 3px solid #2d6a4f;
+  top: 0;
+  left: 25px;
+}
+
+.combo-step.active-step {
+  background-color: var(--neon-green) !important;
+  color: #000 !important;
+  border-color: #fff !important;
+  box-shadow: 0 0 8px var(--neon-green);
+}
