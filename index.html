@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Fuente Pixel Retro -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-  <!-- Estilos Personalizados -->
+  <!-- Estilos Externos -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-dark text-light">
@@ -26,16 +26,7 @@
       <div class="col-12 col-lg-7 d-flex justify-content-center">
         <div class="bmo-body shadow-lg">
           
-          <!-- Altavoces superiores -->
-          <div class="d-flex justify-content-between align-items-center mb-2 px-2">
-            <div class="bmo-speaker">
-              <span></span><span></span><span></span><span></span>
-            </div>
-            <div class="bmo-brand">BMO-VIDEO-SYSTEM</div>
-            <div class="bmo-led" id="status-led" title="Encendido"></div>
-          </div>
-
-          <!-- Marco de la Pantalla CRT -->
+          <!-- Marco de la Pantalla Hundida de BMO -->
           <div class="bmo-screen-bezel">
             <div class="crt-container">
               <canvas id="gameCanvas" width="640" height="400"></canvas>
@@ -43,38 +34,51 @@
             </div>
           </div>
 
-          <!-- Ranura de disquete decorativa y botón azul -->
-          <div class="d-flex justify-content-between align-items-center my-3 px-3">
+          <!-- Fila Superior del Frente: Ranura negra larga (izq) y Botón circular azul oscuro (der) -->
+          <div class="bmo-slot-row">
             <div class="bmo-floppy-slot"></div>
-            <div class="bmo-small-blue-btn" id="btn-mute" title="Activar/Silenciar Sonido 8-Bits">🔊</div>
+            <button type="button" class="bmo-small-blue-btn" id="btn-mute" title="Activar/Silenciar Sonido 8-Bits">🔊</button>
           </div>
 
-          <!-- Controles Físicos / Táctiles de BMO -->
-          <div class="bmo-controls-row px-2">
-            <!-- D-Pad Amarilla -->
-            <div class="dpad-container">
-              <button class="dpad-btn dpad-up" data-key="ArrowUp" aria-label="Arriba">▲</button>
-              <button class="dpad-btn dpad-left" data-key="ArrowLeft" aria-label="Izquierda">◀</button>
-              <div class="dpad-center"></div>
-              <button class="dpad-btn dpad-right" data-key="ArrowRight" aria-label="Derecha">▶</button>
-              <button class="dpad-btn dpad-down" data-key="ArrowDown" aria-label="Abajo">▼</button>
-            </div>
-
-            <!-- Botones Start / Select (Cambio de Personaje) -->
-            <div class="center-buttons d-flex flex-column align-items-center gap-2">
-              <div class="d-flex gap-2">
-                <button class="bmo-pill-btn" data-key="Enter" title="Iniciar / Pausa">START</button>
-                <button class="bmo-pill-btn" data-key="KeyC" title="Alternar Finn / Jake">FINN/JAKE</button>
+          <!-- Área Inferior de Controles Físicos (Fiel a la foto de BMO) -->
+          <div class="bmo-controls-area">
+            
+            <!-- LADO IZQUIERDO: Cruceta Amarilla arriba + 2 Botones Píldora oscuros debajo -->
+            <div class="bmo-left-cluster">
+              <div class="dpad-container">
+                <div class="dpad-cross-bg"></div>
+                <button type="button" class="dpad-btn dpad-up" data-key="ArrowUp" aria-label="Arriba">▲</button>
+                <button type="button" class="dpad-btn dpad-left" data-key="ArrowLeft" aria-label="Izquierda">◀</button>
+                <div class="dpad-center"></div>
+                <button type="button" class="dpad-btn dpad-right" data-key="ArrowRight" aria-label="Derecha">▶</button>
+                <button type="button" class="dpad-btn dpad-down" data-key="ArrowDown" aria-label="Abajo">▼</button>
               </div>
-              <small class="text-dark fw-bold" style="font-size: 0.65rem;">SELECT / START</small>
+
+              <!-- Los 2 botones oscuros debajo de la cruceta amarilla -->
+              <div class="bmo-Bottom-pills">
+                <button type="button" class="bmo-pill-btn" data-key="Enter" title="Iniciar Partida (Enter)">START</button>
+                <button type="button" class="bmo-pill-btn" data-key="KeyC" title="Cambiar Finn / Jake (Tecla C)">FINN/JAKE</button>
+              </div>
             </div>
 
-            <!-- Botones de Acción (Círculo Rojo, Triángulo Turquesa, Cruz Verde) -->
-            <div class="action-buttons">
-              <button class="bmo-action-btn btn-green-triangle" data-key="KeyX" title="Bomba Solar (Tecla X)">💣</button>
-              <button class="bmo-action-btn btn-blue-cross" data-key="KeyZ" title="Atacar (Tecla Z)">⚔️</button>
-              <button class="bmo-action-btn btn-red-circle" data-key="Space" title="Saltar (Espacio)">B</button>
+            <!-- LADO DERECHO: Triángulo Celeste (arriba-izq), Círculo Verde (der) y Círculo Grande Rojo (abajo) -->
+            <div class="bmo-right-cluster">
+              <!-- Triángulo Azul Celeste: Ataque (Z) -->
+              <button type="button" class="bmo-triangle-btn" data-key="KeyZ" title="Atacar (Tecla Z)">
+                <span>⚔️</span>
+              </button>
+
+              <!-- Círculo Pequeño Verde: Bomba Solar (X) -->
+              <button type="button" class="bmo-green-circle-btn" data-key="KeyX" title="Bomba Solar (Tecla X)">
+                💣
+              </button>
+
+              <!-- Círculo Grande Rojo: Saltar (Espacio / B) -->
+              <button type="button" class="bmo-red-big-btn" data-key="Space" title="Saltar (Espacio)">
+                B
+              </button>
             </div>
+
           </div>
 
         </div>
@@ -83,33 +87,33 @@
       <!-- COLUMNA DERECHA: Panel de Ayuda y Guía en Pantalla -->
       <div class="col-12 col-lg-5">
         <div class="card bg-bmo-dark border-neon text-light shadow">
-          <div class="card-header border-neon d-flex justify-content-between align-items-center">
+          <div class="card-header border-neon d-flex justify-content-between align-items-center bg-black">
             <span class="retro-subtitle text-neon">📖 MANUAL DE BMO</span>
             <span class="badge bg-success text-dark fw-bold" id="zone-indicator">ZONA 1: EXTERIOR</span>
           </div>
-          <div class="card-body font-vt323 fs-5">
+          <div class="card-body font-vt323 fs-5 text-light">
             
-            <!-- Controles de Teclado -->
-            <h6 class="text-warning fw-bold text-uppercase mb-2">🎮 Controles de Teclado</h6>
-            <ul class="list-unstyled small-manual mb-3">
-              <li class="mb-1"><span class="badge bg-secondary">← / →</span> o <span class="badge bg-secondary">A / D</span> : Caminar por el nivel</li>
-              <li class="mb-1"><span class="badge bg-danger">ESPACIO</span> o <span class="badge bg-secondary">B</span> : Saltar fosos de lava y ataques</li>
-              <li class="mb-1"><span class="badge bg-info text-dark">Z</span> : Ataque cuerpo a cuerpo (Espada / Puño)</li>
-              <li class="mb-1"><span class="badge bg-primary">C</span> : Alternar en tiempo real entre <strong>Finn</strong> y <strong>Jake</strong></li>
-              <li class="mb-1"><span class="badge bg-success">ENTER</span> : Iniciar partida / Reiniciar</li>
+            <!-- Controles de BMO y Teclado -->
+            <h6 class="text-warning fw-bold text-uppercase mb-2">🎮 Botones de BMO / Teclado</h6>
+            <ul class="list-unstyled small-manual mb-3 text-light">
+              <li class="mb-1"><span class="badge bg-warning text-dark">✚ CRUCETA</span> o <span class="badge bg-secondary">← / →</span> : Moverse</li>
+              <li class="mb-1"><span class="badge bg-danger">🔴 ROJO GRANDE (B)</span> o <span class="badge bg-secondary">ESPACIO</span> : Saltar</li>
+              <li class="mb-1"><span class="badge bg-info text-dark">🔺 TRIÁNGULO AZUL</span> o <span class="badge bg-secondary">Z</span> : Atacar</li>
+              <li class="mb-1"><span class="badge bg-success">🟢 CÍRCULO VERDE</span> o <span class="badge bg-secondary">X</span> : Lanzar Bomba Solar</li>
+              <li class="mb-1"><span class="badge bg-dark border border-secondary">➖ PÍLDORAS INFERIORES</span> : <strong>START</strong> (Iniciar) y <strong>FINN/JAKE</strong> (Tecla C)</li>
             </ul>
 
             <!-- Diferencias de Personajes -->
-            <h6 class="text-warning fw-bold text-uppercase mb-2">⚔️ Héroes Jugables (Tecla C)</h6>
+            <h6 class="text-warning fw-bold text-uppercase mb-2">⚔️ Héroes Jugables (Botón FINN/JAKE o C)</h6>
             <div class="row g-2 mb-3">
               <div class="col-6">
-                <div class="p-2 border border-secondary rounded bg-black">
+                <div class="p-2 border border-secondary rounded bg-black text-light">
                   <strong class="text-neon">👦 FINN</strong>
                   <p class="mb-0 small text-light">Mayor velocidad de movimiento y salto más alto para esquivar fosos.</p>
                 </div>
               </div>
               <div class="col-6">
-                <div class="p-2 border border-secondary rounded bg-black">
+                <div class="p-2 border border-secondary rounded bg-black text-light">
                   <strong class="text-warning">🐶 JAKE</strong>
                   <p class="mb-0 small text-light">Puño elástico con el doble de alcance horizontal y mayor daño.</p>
                 </div>
@@ -117,10 +121,10 @@
             </div>
 
             <!-- El Combo Secreto -->
-            <div class="combo-box p-3 rounded border border-warning bg-black mb-3">
+            <div class="combo-box p-3 rounded border border-warning bg-black mb-3 text-light">
               <h6 class="text-warning fw-bold text-uppercase mb-1">💣 COMBO SECRETO (Bomba Solar)</h6>
               <p class="small mb-2 text-light">
-                El jefe final <strong>Sleepy Sam</strong> es inmune a golpes normales. Ejecuta esta secuencia de teclas para cargar y lanzar la Bomba Solar (o recógela en el mapa):
+                El jefe final <strong>Sleepy Sam</strong> es inmune a golpes normales. Presiona esta secuencia en la cruceta y termina con el botón verde (X):
               </p>
               <div class="d-flex justify-content-center align-items-center gap-1 flex-wrap" id="combo-visual-guide">
                 <span class="badge bg-dark border border-warning text-warning combo-step" data-step="0">↑ ARRIBA</span>
@@ -131,16 +135,16 @@
                 <span>➔</span>
                 <span class="badge bg-dark border border-warning text-warning combo-step" data-step="3">→ DER</span>
                 <span>➔</span>
-                <span class="badge bg-danger text-white combo-step" data-step="4">X (LANZAR)</span>
+                <span class="badge bg-success text-white combo-step" data-step="4">🟢 VERDE (X)</span>
               </div>
             </div>
 
             <!-- Guía de Jefes -->
             <h6 class="text-warning fw-bold text-uppercase mb-2">👾 Los 3 Guardianes (Jefes)</h6>
-            <ul class="list-unstyled small mb-0">
+            <ul class="list-unstyled small mb-0 text-light">
               <li class="mb-1">🐝 <strong>1. Bouncy Bee:</strong> Vuela en onda senoidal, dispara aguijones y embiste a ras de suelo.</li>
-              <li class="mb-1">🐰 <strong>2. Honey Bunny:</strong> Sus saltos pesados derriban estalactitas del techo y dispara rayos láser por los ojos.</li>
-              <li>🐸 <strong>3. Sleepy Sam:</strong> Escupe fuego letal detrás de un foso de ácido. ¡Usa el <strong>Combo Secreto</strong> para vencerlo!</li>
+              <li class="mb-1">🐰 <strong>2. Honey Bunny:</strong> Sus saltos pesados derriban estalactitas del techo y dispara rayos láser.</li>
+              <li>🐸 <strong>3. Sleepy Sam:</strong> Escupe fuego detrás de un foso de ácido. ¡Usa el <strong>Combo Secreto</strong> para vencerlo!</li>
             </ul>
 
           </div>
